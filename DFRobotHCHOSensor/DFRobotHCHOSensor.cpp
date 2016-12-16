@@ -85,5 +85,9 @@ float DFRobotHCHOSensor::dacReadPPM()
 {
    float analogVoltage = analogRead(_sensorPin) / 1024.0 * _ref;
    float ppm = 3.125 * analogVoltage - 1.25;	//linear relationship(0.4V for 0 ppm and 2V for 5ppm)
+   if(ppm<0)
+	   ppm=0；
+   else if(ppm>5)
+	   ppm = 5;
    return ppm;
 }
